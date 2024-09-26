@@ -1,0 +1,5 @@
+[qbittorrent]
+addr       = "http://127.0.0.1:8113" # qbittorrent webui-api hostname/ip
+login      = "admin"                 # qbittorrent webui-api user
+password   = "ubu*xex!pbe.pqv7UXJ"   # qbittorrent webui-api password
+

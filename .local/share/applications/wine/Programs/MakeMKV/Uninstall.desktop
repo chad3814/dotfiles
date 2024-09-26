@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Uninstall
+Exec=env WINEPREFIX="/home/chad/.wine32" wine C:\\\\windows\\\\command\\\\start.exe /Unix /home/chad/.wine32/dosdevices/c:/users/chad/Start\\ Menu/Programs/MakeMKV/Uninstall.lnk
+Type=Application
+StartupNotify=true
+Path=/home/chad/.wine32/dosdevices/c:/Program Files (x86)/MakeMKV
+Icon=6A5A_uninst.0
+StartupWMClass=uninst.exe

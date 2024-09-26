@@ -1,0 +1,26 @@
+{
+  "add books dialog dir": "/storage/media/fast/eBooks",
+  "add books dialog dir-last-used-filter-spec-all-files": false,
+  "database location dialog": "/storage/media/eBooks",
+  "notified-version-updates": {
+    "__class__": "set",
+    "__value__": [
+      "6.2",
+      "6.0",
+      "6.3",
+      "6.1"
+    ]
+  },
+  "sort_history": [
+    [
+      "timestamp",
+      false
+    ],
+    [
+      "timestamp",
+      false
+    ]
+  ],
+  "welcome_wizard_device": "kindle_pw",
+  "welcome_wizard_was_run": true
+}

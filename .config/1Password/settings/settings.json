@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "sshAgent.sshAuthorizatonModel": "application",
+  "developers.cliSharedLockState.enabled": true,
+  "authTags": {
+    "developers.cliSharedLockState.enabled": "1E4YbjXWU6SVYfvzWDjuVB6V+BQzSTJETwFRUulFYtU",
+    "sshAgent.sshAuthorizatonModel": "AwVJmNEm6FIinN0JRE8d0Y9YKnj7wWc7mh9kL4pCb8k"
+  }
+}

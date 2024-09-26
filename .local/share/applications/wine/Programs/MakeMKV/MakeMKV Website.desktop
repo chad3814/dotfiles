@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=MakeMKV Website
+Exec=env WINEPREFIX="/home/chad/.wine32" wine C:\\\\windows\\\\command\\\\start.exe /Unix /home/chad/.wine32/dosdevices/c:/users/chad/Start\\ Menu/Programs/MakeMKV/MakeMKV\\ Website.lnk
+Type=Application
+StartupNotify=true
+Path=/home/chad/.wine32/dosdevices/c:/Program Files (x86)/MakeMKV
+Icon=84A4_MakeMKV.0

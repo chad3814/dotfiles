@@ -1,0 +1,21 @@
+alias plex='docker run --gpus all -d --rm -p 33400:33400 -p 33443:33443 -p 32400:32400/tcp -p 3005:3005/tcp -p 8324:8324/tcp -p 32469:32469/tcp -p 1900:1900/udp -p 32410:32410/udp -p 32412:32412/udp -p 32413:32413/udp -p 32414:32414/udp -e TZ="US/Chicago" -e PLEX_CLAIM="claim-KFRcn7dxcvY4whUVyFf8" -e ADVERTISE_IP="http://172.18.18.51:32400/" -h zeus2 -v /storage/media/fast/plex-config:/config -v /storage/media/fast/transcode:/transcode -v /storage/media:/data/media --name plex plexinc/pms-docker'
+
+alias hw-plex='docker run -d --rm --gpus all --device=/dev/dri/card0:/dev/dri/card0 --device=/dev/dri/card1:/dev/dri/card1 --device=/dev/dri/renderD128:/dev/dri/renderD128 -p 33400:33400 -p 33443:33443 -p 32400:32400/tcp -p 3005:3005/tcp -p 8324:8324/tcp -p 32469:32469/tcp -p 1900:1900/udp -p 32410:32410/udp -p 32412:32412/udp -p 32413:32413/udp -p 32414:32414/udp -e TZ="US/Chicago" -e PLEX_CLAIM="claim-KFRcn7dxcvY4whUVyFf8" -e ADVERTISE_IP="http://172.18.18.51:32400/" -h zeus2 -v /storage/media/fast/plex-config:/config -v /storage/media/fast/transcode:/transcode -v /storage/media:/data/media --name plex hw-plex'
+
+alias sab='docker run -d --rm -e PUID=1000 -e PGID=1000 -e TZ="US/Chicago" -p 8080:8080 -v /storage/media/fast/sab-config:/config -v /storage/media/NZB:/downloads --name sab linuxserver/sabnzbd'
+
+alias radarr='docker run -d --rm -e PUID=1000 -e PGID=1000 -e TZ="US/Chicago" -p 7878:7878 -v /storage/media/fast/radarr-config:/config -v /storage/media:/btr -v /storage/media/NZB:/downloads --name radarr linuxserver/radarr:nightly'
+
+alias sonarr='docker run -d --rm -e PUID=1000 -e PGID=1000 -e TZ="US/Chicago" -p 8989:8989 -v /storage/media/fast/sonarr-config:/config -v /storage/media:/btr -v /storage/media/NZB:/downloads --name sonarr linuxserver/sonarr:develop'
+
+alias transmission='docker run -d --restart=always --cap-add=NET_ADMIN -v /storage/media/fast/transmission-openvpn/data:/data -v /storage/media/fast/transmission-openvpn/config:/config -v /etc/localtime:/etc/localtime:ro -e CREATE_TUN_DEVICE=true -e OPENVPN_PROVIDER=CUSTOM -v /storage/media/fast/transmission-openvpn/AirVPN_Netherlands_UDP-443.ovpn:/etc/openvpn/custom/default.ovpn -e OPENVPN_USERNAME=dummy -e OPENVPN_PASSWORD=dummy -e WEBPROXY_ENABLED=true -e LOCAL_NETWORK=172.18.18.0/24 -e TRANSMISSION_PEER_PORT=3814 -e ENABLE_UFW=FALSE -e PUID=1000 -e PGID=1000 -p 9091:9091 -p 8118:8118 --name transmission -v /home/chad/Projects/rss-feed:/rss-feed -v /home/chad/Projects/rss-feed/install-node.sh:/scripts/openvpn-pre-start.sh:ro -v /home/chad/Projects/rss-feed/start-rss-feed.sh:/scripts/transmission-post-start.sh:ro haugene/transmission-openvpn'
+
+alias readarr='docker run -d --rm --name readarr -p 8787:8787 -e PUID=1000 -e PGID=1000 -e UMASK=002 -e TZ="US/Chicago" -v /storage/media/fast/readarr_config:/config -v /storage/media/books:/books -v /storage/media/NZB:/downloads hotio/readarr:nightly'
+
+alias audiobookshelf='docker run -d --rm -e AUDIOBOOKSHELF_UID=1000 -e AUDIOBOOKSHELF_GID=1000 -p 13378:80 -v /storage/media/fast/audiobookshelf/config:/config -v /storage/media/fast/audiobookshelf/metadata:/metadata -v /storage/media/Audio\ Books/:/audiobooks --name audiobookshelf ghcr.io/advplyr/audiobookshelf'
+
+alias calibre='docker run -d --rm -e PUID=1000 -e PGID=1000 -e TZ=US/Chicago -p 8083:8083 -v /storage/media/fast/calibre-config:/config -v /storage/media/eBooks:/books -e DOCKER_MODS=linuxserver/calibre-web:calibre --name calibre linuxserver/calibre-web:nightly'
+
+alias updateall='docker pull linuxserver/sabnzbd ; docker pull linuxserver/radarr:nightly ; docker pull linuxserver/sonarr:develop ; docker pull haugene/transmission-openvpn ; docker pull hotio/readarr:nightly ; docker pull ghcr.io/advplyr/audiobookshelf'
+
+alias ls='ls -aCF'

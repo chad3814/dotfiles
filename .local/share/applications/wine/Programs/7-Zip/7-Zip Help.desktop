@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=7-Zip Help
+Exec=env WINEPREFIX="/home/chad/.wine" wine C:\\\\windows\\\\command\\\\start.exe /Unix /home/chad/.wine/dosdevices/c:/ProgramData/Microsoft/Windows/Start\\ Menu/Programs/7-Zip/7-Zip\\ Help.lnk
+Type=Application
+StartupNotify=true
+Icon=F77B_7-zip.0

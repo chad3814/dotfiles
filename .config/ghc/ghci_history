@@ -1,0 +1,90 @@
+:t (^2)
+:t (4+)
+:t sqrt
+map ($ 3) [(4+), (10*), (^2)]
+map ($ 3) [(4+), (10*), (^2), sqrt]
+:t maximum
+maximum 
+scanr (+) 0 [3,5,2,1]
+scanl1 (\acc x -> if x > acc then x else acc) [3,4,5,3,7,9,2,1]
+sqrtSums 
+:l funcs
+:t is24OrLess 
+:l funcs
+:l funcs
+:l funcs
+:l funcs
+:l funcs
+:l fincs
+:t readMaybe
+:t Just
+:l funcs
+tell "abcd"
+:l funcs
+tell "abcd"
+:l funcs
+tell "abcd"
+tell [1]
+:l funcs
+:l funcs
+factorial 50
+:l funcs
+:t fromIntegral
+:t length
+2^63
+2^60
+2^59
+2^58
+2^57
+2^56
+2^64
+maxBound :: Int
+:t read
+:t (==)
+:t fst
+:t head
+factorial 50
+:l funcs
+:t removeNonUpperCase 
+:t doubleMe 
+:t boomBangs 
+removeNonUpperCase "Hello There"
+:l funcs
+triangles
+triangles = [ (a,b,c) | c <- [1..], b <- [1..c], a <- [1..b], a^2 + b^2 == c^2, a+b+c==24]
+triangles
+triangles = [ (a,b,c) | c <- [1..24], b <- [1..c], a <- [1..b], a^2 + b^2 == c^2, a+b+c==24]
+triangles
+triangles = [ (a,b,c) | c <- [1..10], b <- [1..c], a <- [1..b], a^2 + b^2 == c^2, a+b+c==24]
+triangles
+triangles = [ (a,b,c) | c <- [1..10], b <- [1..c], a <- [1..b], a^2 + b^2 == c^2]
+triangles
+triangles = [ (a,b,c) | c <- [1..10], b <- [1..10], a <- [1..10]]
+triangles = [ (a,b,c) | c <- [1..10, b <- [1..10], a <- [1..10]]
+boomBangs [7..13]
+:l funcs
+[ x | x <- [50..100], x `mod` 7 == 3]
+[x*2 | x <- [1..10], x*2 >= 12]
+[x*2 | x <- [1..10]]
+conanO'Brien == "It's a-me"
+conanO'Brien = "It's a-me"
+doubleSmall 450
+doubleSmall 45
+:r
+doubleUs 4 9
+:r
+doubleUs 4 9
+:r
+doubleMe 8.3
+doubleMe 9
+:l funcs.hs
+min 10 9
+min 9 10
+succ 8
+true
+True /= 5
+True == 5
+True == 5
+5+"llama"
+5 /=4
+main
