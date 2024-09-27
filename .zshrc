@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Set the directory to store zinit
@@ -20,15 +13,13 @@ fi
 # Source zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
-export PATH="$HOME/.bin:$HOME/.fzf/bin:$PATH"
+export PATH="$HOME/.bin:$HOME/.fzf/bin:$HOME/.local/bin:$PATH"
 
 # make sure homebrew sets up paths
 if [ "MacOS" = $(uname) ]; then
 	eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-# Add powerlevel10k
-zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 # zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
@@ -49,8 +40,7 @@ autoload -U compinit && compinit
 
 zinit cdreplay -q
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/base.json)"
 
 bindkey -e
 
