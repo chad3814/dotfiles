@@ -121,13 +121,19 @@
           "foreground": "#B6D6F2",
           "leading_diamond": " ",
           "properties": {
+            "folder_icon": "\udb80\ude4b",
             "folder_separator_icon": "/",
             "home_icon": "\ueb06",
-            "style": "letter",
-            "max_depth": 3
+            "style": "mixed",
+            "max_depth": 3,
+	    "mixed_threshold": 6,
+	    "mapped_locations_enabled": true,
+	    "mapped_locations": {
+              "/": "\ueb46"
+	    }
           },
           "style": "diamond",
-          "template": "{{ $segment := .Segments.Git }}{{ $icon := \"\ue5fb\" }}{{ if $segment.Dir }} {{ $icon }}{{ $segment.RepoName }}{{ if $segment.IsWorkTree}} \ue21c{{ end }}{{if ne $segment.RepoName .Path}}/{{ trimPrefix $segment.Dir .PWD }}{{ end }}{{ else }} \uea83{{ path .Path .Location }}{{ end }}",
+          "template": "{{ $segment := .Segments.Git }}{{ $icon := \"\ue5fb\" }}{{ if $segment.Dir }} {{ $icon }}{{ $segment.RepoName }}{{ if $segment.IsWorkTree}} \ue21c{{ end }}{{if ne $segment.RepoName .Path}}{{ trimPrefix $segment.Dir .PWD }}{{ end }}{{ else }}{{ path .Path .Location }}{{ end }}",
           "type": "path"
         }
       ],
