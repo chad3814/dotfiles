@@ -1,3 +1,9 @@
+export XDG_RUNTIME_DIR="/run/user/${UID}"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_STATE_HOME="${HOME}/.local/state"
+export PATH="${HOME}/.local/bin:${HOME}/.bin:${PATH}"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Set the directory to store zinit
@@ -13,7 +19,7 @@ fi
 # Source zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
-export PATH="$HOME/.bin:$HOME/.fzf/bin:$HOME/.local/bin:$PATH"
+export PATH="${HOME}/.fzf/bin:$PATH"
 
 # make sure homebrew sets up paths
 if [ "MacOS" = $(uname) ]; then
@@ -40,7 +46,7 @@ autoload -U compinit && compinit
 
 zinit cdreplay -q
 
-eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/base.json)"
+eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/kushal.omp.json)"
 
 bindkey -e
 
