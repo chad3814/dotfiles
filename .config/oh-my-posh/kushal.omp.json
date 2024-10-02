@@ -31,55 +31,12 @@
           "type": "os"
         },
         {
-          "background": "#00C7FC",
-          "foreground": "#011627",
-          "powerline_symbol": "\ue0b0",
-          "style": "powerline",
-          "template": " \uf489 {{ .Name }} ",
-          "type": "shell"
-        },
-        {
           "background": "#EF541C",
           "foreground": "#D6DEEB",
           "powerline_symbol": "\ue0b0",
           "style": "powerline",
           "template": " \uf09c admin ",
           "type": "root"
-        },
-        {
-          "type": "cmake",
-          "style": "powerline",
-          "powerline_symbol": "\ue0b0",
-          "foreground": "#E8EAEE",
-          "background": "#1E9748",
-          "template": " \ue61e \ue61d cmake {{ .Full }} "
-        },
-        {
-          "type": "python",
-          "style": "powerline",
-          "powerline_symbol": "\ue0b0",
-          "properties": {
-            "display_mode": "context"
-          },
-          "foreground": "#011627",
-          "background": "#FFDE57",
-          "template": " \ue73c {{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }} "
-        },
-        {
-          "type": "go",
-          "style": "powerline",
-          "powerline_symbol": "\ue0b0",
-          "foreground": "#ffffff",
-          "background": "#7FD5EA",
-          "template": " \u202d\ue626 {{ .Full }} "
-        },
-        {
-          "type": "rust",
-          "style": "powerline",
-          "powerline_symbol": "\ue0b0",
-          "foreground": "#193549",
-          "background": "#99908A",
-          "template": " \ue7a8 {{ .Full }} "
         },
         {
           "background": "#1BD4CD",
@@ -123,7 +80,7 @@
             "always_enabled": true
           },
           "style": "diamond",
-          "template": " {{ if gt .Code 0 }}\uf00d{{ else }}\uf00c{{ end }} ",
+          "template": " {{ if gt .Code 0 }}{{ .Code }}{{ else }}\uf00c{{ end }} ",
           "type": "status"
         },
         {
@@ -162,10 +119,10 @@
         },
         {
           "foreground": "#B6D6F2",
-          "leading_diamond": "<#00C7FC> \uf07b </><#B6D6F2> in </>",
+          "leading_diamond": " ",
           "properties": {
             "folder_icon": " \uf07c ",
-            "folder_separator_icon": " \uf061 ",
+            "folder_separator_icon": " / ",
             "home_icon": "\ueb06 ",
             "style": "agnoster_short",
             "max_depth": 3
