@@ -23,7 +23,7 @@
             "mint": "\uf30f",
             "opensuse": "\uf314",
             "raspbian": "\uf315",
-            "ubuntu": "\uf31c",
+            "ubuntu": "\uef72",
             "windows": "\ue70f"
           },
           "style": "diamond",
@@ -135,6 +135,17 @@
           "style": "diamond",
           "template": "{{ $segment := .Segments.Git }}{{ $icon := \"\ue5fb\" }}{{ if $segment.Dir }} {{ $icon }}{{ $segment.RepoName }}{{ if $segment.IsWorkTree}} \ue21c{{ end }}{{if ne $segment.RepoName .Path}}{{ trimPrefix $segment.Dir .PWD }}{{ end }}{{ else }}{{ path .Path .Location }}{{ end }}",
           "type": "path"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "right",
+      "segments": [
+        {
+          "template": "\ue266 {{ round .PhysicalPercentUsed .Precision }}%",
+          "type": "sysinfo",
+          "style": "plain"
         }
       ],
       "type": "prompt"
