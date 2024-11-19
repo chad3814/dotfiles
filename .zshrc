@@ -21,6 +21,8 @@ fi
 # Source zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
+export PATH="$HOME/.bin:$HOME/.fzf/bin:$HOME/.local/bin:$HOME/Developer/PlaydateSDK/bin:$PATH"
+
 # zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
