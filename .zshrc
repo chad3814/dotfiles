@@ -73,6 +73,8 @@ eval "$(fzf --zsh)"
 # Aliases
 [[ ! -f ~/.aliases ]] || source ~/.aliases
 
+# Add VS Code binary to PATH on macOS
+if [ -f '/Applications/Visual Studio Code.app/Contents/Resources/app/bin' ]; then PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"; fi
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi

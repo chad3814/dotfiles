@@ -1,0 +1,12 @@
+[user]
+	email = cwalker@mozilla.com
+	name = Chad Walker
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA0Z0q1gCCrpw7NL+LneIJ9PMZkr7iJd6Kob6lsF3yUA
+[init]
+	defaultBranch = main
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = ssh-sign.sh
+[commit]
+	gpgsign = true
