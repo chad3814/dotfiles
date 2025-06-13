@@ -3,42 +3,93 @@
       xmlns:bookmark="http://www.freedesktop.org/standards/desktop-bookmarks"
       xmlns:mime="http://www.freedesktop.org/standards/shared-mime-info"
 >
-  <bookmark href="file:///storage/media/Adult%20Movies/Mardi%20Gras%20Massacre%20(1978)/Mardi%20Gras%20Massacre%20(1978)%20BR-DISK.iso" added="2024-09-05T14:40:40.176619Z" modified="2024-09-05T14:40:40.176713Z" visited="2024-09-05T14:40:40.176620Z">
+  <bookmark href="file:///Users/cwalker/Projects/fucking-awesome/icons/icon512.png" added="2025-05-30T18:48:00.912528Z" modified="2025-05-30T18:48:01.209547Z" visited="2025-05-30T18:48:00.912529Z">
     <info>
       <metadata owner="http://freedesktop.org">
-        <mime:mime-type type="application/x-cd-image"/>
+        <mime:mime-type type="image/png"/>
+        <bookmark:groups>
+          <bookmark:group>Graphics</bookmark:group>
+        </bookmark:groups>
         <bookmark:applications>
-          <bookmark:application name="makemkv" exec="&apos;makemkv %u&apos;" modified="2024-09-05T14:40:40.176705Z" count="1"/>
+          <bookmark:application name="GNU Image Manipulation Program" exec="&apos;gimp-3.0 %u&apos;" modified="2025-05-30T18:48:01.209546Z" count="2"/>
         </bookmark:applications>
       </metadata>
     </info>
   </bookmark>
-  <bookmark href="file:///home/chad/ubuntu-24.04.1-live-server-amd64.iso" added="2024-09-06T19:57:48.381579Z" modified="2024-09-06T19:57:48.381677Z" visited="2024-09-06T19:57:48.381581Z">
+  <bookmark href="file:///Users/cwalker/Downloads/ChatGPT%20Image%20Jun%205,%202025,%2001_32_19%20PM.png" added="2025-06-05T19:40:44.516192Z" modified="2025-06-05T21:33:27.654451Z" visited="2025-06-05T19:40:44.516193Z">
     <info>
       <metadata owner="http://freedesktop.org">
-        <mime:mime-type type="application/x-cd-image"/>
+        <mime:mime-type type="image/png"/>
+        <bookmark:groups>
+          <bookmark:group>Graphics</bookmark:group>
+        </bookmark:groups>
         <bookmark:applications>
-          <bookmark:application name="virt-manager" exec="&apos;virt-manager %u&apos;" modified="2024-09-06T19:57:48.381660Z" count="1"/>
+          <bookmark:application name="GNU Image Manipulation Program" exec="&apos;gimp-3.0 %u&apos;" modified="2025-06-05T21:33:27.654450Z" count="4"/>
         </bookmark:applications>
       </metadata>
     </info>
   </bookmark>
-  <bookmark href="file:///home/chad/Downloads/%5B1054966%5D_Ghost_Station.torrent" added="2024-09-16T14:47:50.355438Z" modified="2024-09-16T14:47:50.355544Z" visited="2024-09-16T14:47:50.355442Z">
+  <bookmark href="file:///Users/cwalker/Downloads/marsh.svg" added="2025-06-05T21:37:43.288384Z" modified="2025-06-05T21:38:38.836519Z" visited="2025-06-05T21:37:43.288385Z">
     <info>
       <metadata owner="http://freedesktop.org">
-        <mime:mime-type type="application/x-bittorrent"/>
+        <mime:mime-type type="image/svg+xml"/>
+        <bookmark:groups>
+          <bookmark:group>Graphics</bookmark:group>
+        </bookmark:groups>
         <bookmark:applications>
-          <bookmark:application name="Firefox" exec="&apos;firefox %u&apos;" modified="2024-09-16T14:47:50.355476Z" count="1"/>
+          <bookmark:application name="GNU Image Manipulation Program" exec="&apos;gimp-3.0 %u&apos;" modified="2025-06-05T21:38:38.836519Z" count="2"/>
         </bookmark:applications>
       </metadata>
     </info>
   </bookmark>
-  <bookmark href="file:///home/chad/Downloads/%5B1023083%5D_Ghost_Station.torrent" added="2024-09-16T14:47:57.021946Z" modified="2024-09-16T14:47:57.021970Z" visited="2024-09-16T14:47:57.021948Z">
+  <bookmark href="file:///Users/cwalker/Downloads/spqr-logo.svg" added="2025-06-05T21:40:20.742549Z" modified="2025-06-08T20:21:28.552479Z" visited="2025-06-05T21:40:20.742549Z">
     <info>
       <metadata owner="http://freedesktop.org">
-        <mime:mime-type type="application/x-bittorrent"/>
+        <mime:mime-type type="image/svg+xml"/>
+        <bookmark:groups>
+          <bookmark:group>Graphics</bookmark:group>
+        </bookmark:groups>
         <bookmark:applications>
-          <bookmark:application name="Firefox" exec="&apos;firefox %u&apos;" modified="2024-09-16T14:47:57.021961Z" count="1"/>
+          <bookmark:application name="GNU Image Manipulation Program" exec="&apos;gimp-3.0 %u&apos;" modified="2025-06-08T20:21:28.552475Z" count="5"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///Users/cwalker/Downloads/spqr-logo2.svg" added="2025-06-05T21:43:22.783959Z" modified="2025-06-05T21:43:36.017606Z" visited="2025-06-05T21:43:22.783960Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="image/svg+xml"/>
+        <bookmark:groups>
+          <bookmark:group>Graphics</bookmark:group>
+        </bookmark:groups>
+        <bookmark:applications>
+          <bookmark:application name="GNU Image Manipulation Program" exec="&apos;gimp-3.0 %u&apos;" modified="2025-06-05T21:43:36.017606Z" count="2"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///Users/cwalker/Downloads/warfish.png" added="2025-06-05T21:48:04.958568Z" modified="2025-06-05T21:48:05.231697Z" visited="2025-06-05T21:48:04.958576Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="image/png"/>
+        <bookmark:groups>
+          <bookmark:group>Graphics</bookmark:group>
+        </bookmark:groups>
+        <bookmark:applications>
+          <bookmark:application name="GNU Image Manipulation Program" exec="&apos;gimp-3.0 %u&apos;" modified="2025-06-05T21:48:05.231696Z" count="2"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="file:///Users/cwalker/Downloads/reddit-icon.png" added="2025-06-08T20:23:13.269983Z" modified="2025-06-08T20:23:17.074620Z" visited="2025-06-08T20:23:13.269984Z">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="image/png"/>
+        <bookmark:groups>
+          <bookmark:group>Graphics</bookmark:group>
+        </bookmark:groups>
+        <bookmark:applications>
+          <bookmark:application name="GNU Image Manipulation Program" exec="&apos;gimp-3.0 %u&apos;" modified="2025-06-08T20:23:17.074619Z" count="2"/>
         </bookmark:applications>
       </metadata>
     </info>
