@@ -1,14 +1,3 @@
-export XDG_RUNTIME_DIR="/run/user/${UID}"
-export XDG_DATA_HOME="${HOME}/.local/share"
-export XDG_CONFIG_HOME="${HOME}/.config"
-export XDG_STATE_HOME="${HOME}/.local/state"
-export PATH="${HOME}/.local/bin:${HOME}/.bin:${PATH}"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# Set the directory to store zinit
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-
 # Download zinit if it's not there
 if [ ! -d "$ZINIT_HOME" ]; then
 	mkdir -p "$(dirname $ZINIT_HOME)"
@@ -18,14 +7,6 @@ fi
 
 # Source zinit
 source "${ZINIT_HOME}/zinit.zsh"
-
-export PATH="${HOME}/.fzf/bin:$PATH"
-
-# make sure homebrew sets up paths
-if [ "MacOS" = $(uname) ]; then
-	eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-
 
 # zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
@@ -46,7 +27,7 @@ autoload -U compinit && compinit
 
 zinit cdreplay -q
 
-eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/kushal.omp.json)"
+eval "$(oh-my-posh init zsh --config ${HOME}/.config/oh-my-posh/kushal.omp.json)"
 
 bindkey -e
 

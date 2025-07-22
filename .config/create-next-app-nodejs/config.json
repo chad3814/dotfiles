@@ -3,6 +3,8 @@
 		"typescript": true,
 		"eslint": true,
 		"tailwind": false,
-		"srcDir": true
+		"srcDir": true,
+		"app": true,
+		"turbopack": true
 	}
 }
