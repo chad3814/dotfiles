@@ -14,6 +14,9 @@ if [ ! -d "$ZINIT_HOME" ]; then
 	git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
+if [ -e "${HOME}/.1password/agent.sock" ]; then
+    export SSH_AUTH_SOCK="${HOME}/.1password/agent.sock"
+fi
 
 # Source zinit
 source "${ZINIT_HOME}/zinit.zsh"
