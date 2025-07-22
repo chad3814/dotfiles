@@ -93,12 +93,8 @@
           "background": "#03DED3",
           "type": "status",
           "style": "diamond",
-          "foreground_templates": [
-            "{{ if gt .Code 0 }}#D6DEEB{{ end }}"
-          ],
-          "background_templates": [
-            "{{ if gt .Code 0 }}#E44141{{ end }}"
-          ]
+          "foreground_templates": ["{{ if gt .Code 0 }}#D6DEEB{{ end }}"],
+          "background_templates": ["{{ if gt .Code 0 }}#E44141{{ end }}"]
         },
         {
           "properties": {
@@ -153,7 +149,7 @@
             "style": "mixed"
           },
           "leading_diamond": " ",
-          "template": "{{ $segment := .Segments.Git }}{{ $icon := \"\ue5fb\" }}{{ if $segment.Dir }} {{ $icon }}{{ $segment.RepoName }}{{ if $segment.IsWorkTree}} \ue21c{{ end }}{{if ne $segment.RepoName .Path}}{{ trimPrefix $segment.Dir .PWD }}{{ end }}{{ else }}{{ path .Path .Location }}{{ end }}",
+          "template": "{{ $segment := .Segments.Git }}{{ $icon := \"\ue5fb\" }}{{ if $segment.Dir }} {{ $icon }}{{ $segment.RepoName }}{{ if $segment.IsWorkTree}} \ue21c{{ end }} {{if ne $segment.RepoName .Path}}{{ trimPrefix $segment.Dir .PWD }}{{ end }}{{ else }}{{ path .Path .Location }}{{ end }}",
           "foreground": "#B6D6F2",
           "type": "path",
           "style": "diamond"

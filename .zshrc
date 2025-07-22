@@ -1,3 +1,13 @@
+FZF_DIR="${XDG_DATA_HOME:-${HOME}/.local/share}/fzf"
+if [ ! -d "$FZF_DIR" ]; then
+    mkdir -p "$(dirname $FZF_DIR)"
+    git clone --depth 1 https://github.com/junegunn/fzf.git "$FZF_DIR"
+    $FZF_DIR/bin/install --bin --xdg
+fi
+
+export PATH="$FZF_DIR/bin:$PATH"
+
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 # Download zinit if it's not there
 if [ ! -d "$ZINIT_HOME" ]; then
 	mkdir -p "$(dirname $ZINIT_HOME)"
