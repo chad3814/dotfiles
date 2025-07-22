@@ -2,7 +2,7 @@ FZF_DIR="${XDG_DATA_HOME:-${HOME}/.local/share}/fzf"
 if [ ! -d "$FZF_DIR" ]; then
     mkdir -p "$(dirname $FZF_DIR)"
     git clone --depth 1 https://github.com/junegunn/fzf.git "$FZF_DIR"
-    $FZF_DIR/bin/install --bin --xdg
+    $FZF_DIR/install --bin --xdg
 fi
 
 export PATH="$FZF_DIR/bin:$PATH"
