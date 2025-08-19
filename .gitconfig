@@ -10,3 +10,5 @@
 	gpgsign = true
 [gpg "ssh"]
 	allowedSignersFile = ~/.config/git/allowed_signers
+[core]
+	editor = code --wait
