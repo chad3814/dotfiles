@@ -5,7 +5,7 @@ if [ ! -d "$FZF_DIR" ]; then
     $FZF_DIR/install --bin --xdg
 fi
 
-export PATH="$FZF_DIR/bin:$PATH"
+export PATH="$FZF_DIR/bin:${HOME}/.local/bin:$PATH"
 
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 # Download zinit if it's not there
@@ -82,5 +82,4 @@ if [[ "$(uname -s)" = "Darwin" && -d "/opt/homebrew/opt/curl" ]]; then
   export CPPFLAGS="-I/opt/homebrew/opt/curl/include"
 fi
 
-. ~/.env
-
+source ~/.env
