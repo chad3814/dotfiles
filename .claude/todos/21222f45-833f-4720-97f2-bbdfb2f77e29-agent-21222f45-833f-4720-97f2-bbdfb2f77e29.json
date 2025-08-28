@@ -1,0 +1,17 @@
+[
+  {
+    "content": "Add explicit guidance about futile attacks and consecutive probability",
+    "status": "completed",
+    "id": "1"
+  },
+  {
+    "content": "Clarify that 'probing' attacks are wasteful",
+    "status": "completed",
+    "id": "2"
+  },
+  {
+    "content": "Test the updated prompt",
+    "status": "completed",
+    "id": "3"
+  }
+]

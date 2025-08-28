@@ -19,3 +19,5 @@ alias calibre='docker run -d --rm -e PUID=1000 -e PGID=1000 -e TZ=US/Chicago -p 
 alias updateall='docker pull linuxserver/sabnzbd ; docker pull linuxserver/radarr:nightly ; docker pull linuxserver/sonarr:develop ; docker pull haugene/transmission-openvpn ; docker pull hotio/readarr:nightly ; docker pull ghcr.io/advplyr/audiobookshelf'
 
 alias ls='ls -aCF'
+
+alias claude='/home/chad/.claude/local/claude --dangerously-skip-permissions'

@@ -1,0 +1,27 @@
+[
+  {
+    "content": "Set up TypeScript configuration and dependencies",
+    "status": "completed",
+    "id": "1"
+  },
+  {
+    "content": "Create type definitions for ICAL.js library",
+    "status": "completed",
+    "id": "2"
+  },
+  {
+    "content": "Convert filter-ical.js to TypeScript with proper types",
+    "status": "completed",
+    "id": "3"
+  },
+  {
+    "content": "Update package.json with TypeScript scripts",
+    "status": "completed",
+    "id": "4"
+  },
+  {
+    "content": "Update CLAUDE.md with TypeScript information",
+    "status": "completed",
+    "id": "5"
+  }
+]

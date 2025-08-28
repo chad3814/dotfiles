@@ -1,0 +1,27 @@
+[
+  {
+    "content": "Create new Header component with nav bar",
+    "status": "completed",
+    "id": "1"
+  },
+  {
+    "content": "Create Footer component with CAWPILE explanation",
+    "status": "completed",
+    "id": "2"
+  },
+  {
+    "content": "Update layout.tsx with new structure",
+    "status": "completed",
+    "id": "3"
+  },
+  {
+    "content": "Simplify home page with conditional message",
+    "status": "completed",
+    "id": "4"
+  },
+  {
+    "content": "Fix modal and input styling for better visibility",
+    "status": "completed",
+    "id": "5"
+  }
+]

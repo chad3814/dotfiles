@@ -81,3 +81,6 @@ if [[ "$(uname -s)" = "Darwin" && -d "/opt/homebrew/opt/curl" ]]; then
   export LDFLAGS="-L/opt/homebrew/opt/curl/lib"
   export CPPFLAGS="-I/opt/homebrew/opt/curl/include"
 fi
+
+. ~/.env
+

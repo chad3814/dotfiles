@@ -1,0 +1,86 @@
+[
+  {
+    "content": "Run lint to identify missing sendMessage dependencies",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Fix missing sendMessage dependencies in effects and callbacks",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Fix pages/admin/cache.tsx",
+    "status": "completed",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "Fix pages/admin/flags.tsx",
+    "status": "completed",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "Fix pages/admin/websockets.tsx",
+    "status": "completed",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "Fix pages/game/play.tsx",
+    "status": "completed",
+    "priority": "medium",
+    "id": "6"
+  },
+  {
+    "content": "Fix components/game/create/createcontainer.tsx",
+    "status": "completed",
+    "priority": "medium",
+    "id": "7"
+  },
+  {
+    "content": "Fix components/game/play/attack/attacknumunits.tsx",
+    "status": "completed",
+    "priority": "medium",
+    "id": "8"
+  },
+  {
+    "content": "Fix components/game/play/attack/endturndialog.tsx",
+    "status": "completed",
+    "priority": "medium",
+    "id": "9"
+  },
+  {
+    "content": "Fix components/game/play/chat/editmenu/deletebutton.tsx",
+    "status": "completed",
+    "priority": "medium",
+    "id": "10"
+  },
+  {
+    "content": "Fix components/game/play/chat/input.tsx",
+    "status": "completed",
+    "priority": "medium",
+    "id": "11"
+  },
+  {
+    "content": "Fix remaining game/play components",
+    "status": "completed",
+    "priority": "medium",
+    "id": "12"
+  },
+  {
+    "content": "Fix map and user components",
+    "status": "completed",
+    "priority": "medium",
+    "id": "13"
+  },
+  {
+    "content": "Run lint again to verify all fixes",
+    "status": "completed",
+    "priority": "high",
+    "id": "14"
+  }
+]
