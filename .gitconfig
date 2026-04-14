@@ -9,6 +9,15 @@
 [commit]
 	gpgsign = true
 [gpg "ssh"]
-	allowedSignersFile = ~/.config/git/allowed_signers
+	allowedSignersFile = /Users/cwalker/.ssh/allowed_signes
 [core]
 	editor = code --wait
+	excludesfile = /Users/cwalker/.gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /private/var/folders/hz/36kt8w_56mdd694z79gfqw940000gn/T/AppTranslocation/FCE2B1BD-057B-4156-9D53-040D87C329C5/d/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[pull]
+	rebase = true

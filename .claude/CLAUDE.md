@@ -28,3 +28,6 @@ The SuperClaude framework components will be automatically imported below.
 @MCP_Playwright.md
 @MCP_Sequential.md
 @MCP_Serena.md
+- never push git commits to the remote
+never use the `any` typescript type
+- *NEVER* make a commit without my explicit approval. *NEVER* push to remote without my explicit approval.
