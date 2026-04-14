@@ -7,4 +7,8 @@
 .claude/shell-snapshots
 .claude/todos
 .claude/statsig
+.local/share/zinit
+.local/share/fzf
+.oh-my-zsh
+.fzf
 

@@ -1,9 +1,0 @@
-[submodule ".oh-my-zsh/custom/plugins/fzf-tab"]
-	path = .oh-my-zsh/custom/plugins/fzf-tab
-	url = https://github.com/Aloxaf/fzf-tab.git
-[submodule ".local/share/zinit/plugins/Aloxaf---fzf-tab"]
-	path = .local/share/zinit/plugins/Aloxaf---fzf-tab
-	url = https://github.com/Aloxaf/fzf-tab.git
-[submodule ".fzf"]
-	path = .fzf
-	url = https://github.com/junegunn/fzf.git
