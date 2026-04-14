@@ -1,13 +1,8 @@
 {
-  "env": {},
-  "includeCoAuthoredBy": false,
-  "permissions": {
-    "allow": [],
-    "deny": []
+  "attribution": {
+    "commit": "",
+    "pr": ""
   },
-  "hooks": {},
-  "feedbackSurveyState": {
-    "lastShownTime": 1753915017773
-  },
-  "model": "opus"
+  "model": "opus[1m]",
+  "skipDangerousModePermissionPrompt": true
 }
