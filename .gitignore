@@ -13,3 +13,4 @@
 .fzf
 
 .config/gh/hosts.yml
+.1password/agent.sock
