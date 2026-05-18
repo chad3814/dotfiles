@@ -79,4 +79,5 @@
   },
   "skipDangerousModePermissionPrompt": true,
   "verbose": true
+  "theme": "dark"
 }

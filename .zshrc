@@ -62,6 +62,7 @@ setopt hist_find_no_dups
 # Completeions
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
+zstyle ':completion:*' special-dirs false
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
 eval "$(fzf --zsh)"
