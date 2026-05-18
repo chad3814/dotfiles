@@ -78,6 +78,6 @@
     }
   },
   "skipDangerousModePermissionPrompt": true,
-  "verbose": true
+  "verbose": true,
   "theme": "dark"
 }
