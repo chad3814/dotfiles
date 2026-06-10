@@ -1,0 +1,6 @@
+# Enable SCT ERC (TLER)=7.0s on rotational disks so ZFS gets fast errors
+# instead of drives hanging in deep recovery and getting reset/dropped.
+ACTION=="add", SUBSYSTEM=="block", KERNEL=="sd*", ENV{DEVTYPE}=="disk", \
+  ATTR{queue/rotational}=="1", \
+  TAG+="systemd", ENV{SYSTEMD_WANTS}+="set-scterc@$kernel.service"
+

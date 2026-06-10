@@ -1,0 +1,8 @@
+[Unit]
+Description=Set SCT ERC (TLER) 7s on /dev/%i
+After=systemd-udevd.service
+
+[Service]
+Type=oneshot
+ExecStart=-/usr/sbin/smartctl -l scterc,70,70 /dev/%i
+
