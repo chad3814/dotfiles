@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# ssh-tunnel-proxy — lazy, host-auto-selecting SSH port proxy.
+# Subcommands: listen <port> | connect <port> | start
+# Sourceable: defining functions must not trigger main (see guard at bottom).
+
+SELF="$(readlink -f "${BASH_SOURCE[0]}")"
+PORTS=(1080 8080 7878 8006 8113 8989 9999)
+HOSTS=(zeus home)
+
+# Indirection point so tests can capture the final command instead of exec'ing.
+_exec() { exec "$@"; }
+
+usage() {
+  cat >&2 <<EOF
+usage: ${0##*/} <listen|connect|start> [port]
+  listen <port>   run a socat listener on 127.0.0.1:<port>
+  connect <port>  resolve host and proxy stdin/stdout via ssh -W (used by socat)
+  start           run listeners for all forwarded ports
+EOF
+}
+
+main() {
+  local sub="${1:-}"
+  [[ $# -gt 0 ]] && shift
+  case "$sub" in
+    listen)  cmd_listen "$@" ;;
+    connect) cmd_connect "$@" ;;
+    start)   cmd_start "$@" ;;
+    *)       usage; return 2 ;;
+  esac
+}
+
+# Placeholder bodies filled in later tasks; declared so `main` dispatch resolves.
+cmd_listen()  { usage; return 2; }
+cmd_connect() { usage; return 2; }
+cmd_start()   { usage; return 2; }
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+  set -euo pipefail
+  main "$@"
+fi
