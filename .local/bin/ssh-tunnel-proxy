@@ -67,6 +67,19 @@ ensure_primary() {
   with_lock _dial_primary "$1"
 }
 
+resolve_host() {
+  local h
+  for h in "${HOSTS[@]}"; do
+    if primary_alive "$h"; then
+      printf '%s\n' "$h"
+      return 0
+    fi
+  done
+  if on_home_lan; then h=zeus; else h=home; fi
+  ensure_primary "$h"
+  printf '%s\n' "$h"
+}
+
 # Placeholder bodies filled in later tasks; declared so `main` dispatch resolves.
 cmd_listen()  { usage; return 2; }
 cmd_connect() { usage; return 2; }

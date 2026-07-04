@@ -119,6 +119,41 @@ test_ensure_primary_skips_dial_when_present() {
   unset -f ssh
 }
 
+# --- Task 5 tests ---
+test_resolve_prefers_live_zeus() {
+  primary_alive() { [[ "$1" == zeus ]]; }         # zeus up
+  on_home_lan() { return 1; }                    # would say home
+  ensure_primary() { return 0; }
+  assert_eq "zeus" "$(resolve_host)" "live zeus primary wins"
+  unset -f primary_alive on_home_lan ensure_primary
+}
+test_resolve_prefers_live_home_over_lan() {
+  primary_alive() { [[ "$1" == home ]]; }         # home up, zeus down
+  on_home_lan() { return 0; }                    # LAN would say zeus
+  ensure_primary() { return 0; }
+  assert_eq "home" "$(resolve_host)" "live home primary wins over LAN"
+  unset -f primary_alive on_home_lan ensure_primary
+}
+test_resolve_lan_picks_zeus_and_dials() {
+  primary_alive() { return 1; }                   # nothing up
+  on_home_lan() { return 0; }                    # on LAN
+  STP_TEST_ENSURED=""
+  ensure_primary() { STP_TEST_ENSURED="$1"; return 0; }
+  assert_eq "zeus" "$(resolve_host)" "no primary + LAN -> zeus"
+  # resolve_host runs ensure_primary in the same shell only via command sub,
+  # so re-run capturing the side effect directly:
+  resolve_host >/dev/null
+  assert_eq "zeus" "$STP_TEST_ENSURED" "dialed zeus primary"
+  unset -f primary_alive on_home_lan ensure_primary
+}
+test_resolve_offlan_picks_home() {
+  primary_alive() { return 1; }
+  on_home_lan() { return 1; }                    # off LAN
+  ensure_primary() { return 0; }
+  assert_eq "home" "$(resolve_host)" "no primary + off-LAN -> home"
+  unset -f primary_alive on_home_lan ensure_primary
+}
+
 run_all() {
   test_sourcing_does_not_run_main
   test_unknown_subcommand_returns_2
@@ -132,6 +167,10 @@ run_all() {
   test_primary_alive_reflects_ssh_check
   test_ensure_primary_dials_when_absent
   test_ensure_primary_skips_dial_when_present
+  test_resolve_prefers_live_zeus
+  test_resolve_prefers_live_home_over_lan
+  test_resolve_lan_picks_zeus_and_dials
+  test_resolve_offlan_picks_home
 }
 run_all
 finish
