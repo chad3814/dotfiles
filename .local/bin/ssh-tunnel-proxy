@@ -53,6 +53,20 @@ on_home_lan() {
     | grep -qE '172\.18\.18\.[0-9]'
 }
 
+primary_alive() {
+  ssh -O check "$1" >/dev/null 2>&1
+}
+
+_dial_primary() {
+  local host="$1"
+  primary_alive "$host" && return 0
+  ssh -MNf -o ClearAllForwardings=yes "$host"
+}
+
+ensure_primary() {
+  with_lock _dial_primary "$1"
+}
+
 # Placeholder bodies filled in later tasks; declared so `main` dispatch resolves.
 cmd_listen()  { usage; return 2; }
 cmd_connect() { usage; return 2; }

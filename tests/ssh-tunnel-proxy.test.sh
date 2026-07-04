@@ -82,6 +82,43 @@ test_with_lock_serializes() {
   wait
 }
 
+# --- Task 4 tests ---
+test_primary_alive_reflects_ssh_check() {
+  ssh() { [[ "$*" == "-O check zeus" ]] && return 0; return 1; }
+  primary_alive zeus; assert_true "$?" "primary_alive true when ssh -O check ok"
+  primary_alive home; assert_false "$?" "primary_alive false when ssh -O check fails"
+  unset -f ssh
+}
+test_ensure_primary_dials_when_absent() {
+  STP_LOCKDIR="$(mktemp -d)/lock.d"
+  STP_TEST_DIALED=""
+  ssh() {
+    case "$*" in
+      "-O check "*) return 1 ;;                       # no primary yet
+      "-MNf -o ClearAllForwardings=yes zeus")
+        STP_TEST_DIALED=zeus; return 0 ;;
+      *) return 1 ;;
+    esac
+  }
+  ensure_primary zeus; assert_true "$?" "ensure_primary returns ok after dial"
+  assert_eq "zeus" "$STP_TEST_DIALED" "ensure_primary dialed zeus"
+  unset -f ssh
+}
+test_ensure_primary_skips_dial_when_present() {
+  STP_LOCKDIR="$(mktemp -d)/lock.d"
+  STP_TEST_DIALED=""
+  ssh() {
+    case "$*" in
+      "-O check "*) return 0 ;;                        # already alive
+      "-MNf "*) STP_TEST_DIALED=yes; return 0 ;;
+      *) return 1 ;;
+    esac
+  }
+  ensure_primary zeus; assert_true "$?" "ensure_primary ok when already alive"
+  assert_eq "" "$STP_TEST_DIALED" "ensure_primary did not re-dial"
+  unset -f ssh
+}
+
 run_all() {
   test_sourcing_does_not_run_main
   test_unknown_subcommand_returns_2
@@ -92,6 +129,9 @@ run_all() {
   test_with_lock_runs_command_and_returns_status
   test_with_lock_releases_lock
   test_with_lock_serializes
+  test_primary_alive_reflects_ssh_check
+  test_ensure_primary_dials_when_absent
+  test_ensure_primary_skips_dial_when_present
 }
 run_all
 finish
