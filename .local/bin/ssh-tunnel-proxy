@@ -7,6 +7,24 @@ SELF="$(readlink -f "${BASH_SOURCE[0]}")"
 PORTS=(1080 8080 7878 8006 8113 8989 9999)
 HOSTS=(zeus home)
 
+STP_LOCKDIR="${STP_LOCKDIR:-${TMPDIR:-/tmp}/ssh-tunnel-proxy.lock.d}"
+
+with_lock() {
+  local tries=0
+  until mkdir "$STP_LOCKDIR" 2>/dev/null; do
+    tries=$((tries+1))
+    if (( tries >= 50 )); then
+      # Give up waiting; run without the lock rather than hang forever.
+      break
+    fi
+    sleep 0.1
+  done
+  local status=0
+  "$@" || status=$?
+  rmdir "$STP_LOCKDIR" 2>/dev/null || true
+  return "$status"
+}
+
 # Indirection point so tests can capture the final command instead of exec'ing.
 _exec() { exec "$@"; }
 

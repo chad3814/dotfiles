@@ -63,6 +63,25 @@ test_on_home_lan_no_false_positive_on_180() {
   unset -f ifconfig ip
 }
 
+# --- Task 3 tests ---
+test_with_lock_runs_command_and_returns_status() {
+  STP_LOCKDIR="$(mktemp -d)/lock.d"
+  with_lock true; assert_true "$?" "with_lock passes through success"
+  with_lock false; assert_false "$?" "with_lock passes through failure"
+}
+test_with_lock_releases_lock() {
+  STP_LOCKDIR="$(mktemp -d)/lock.d"
+  with_lock true
+  [[ -d "$STP_LOCKDIR" ]]; assert_false "$?" "lock dir removed after run"
+}
+test_with_lock_serializes() {
+  STP_LOCKDIR="$(mktemp -d)/lock.d"
+  mkdir -p "$STP_LOCKDIR"   # pre-hold the lock
+  ( sleep 0.3; rmdir "$STP_LOCKDIR" ) &
+  with_lock true; assert_true "$?" "with_lock waits then acquires"
+  wait
+}
+
 run_all() {
   test_sourcing_does_not_run_main
   test_unknown_subcommand_returns_2
@@ -70,6 +89,9 @@ run_all() {
   test_on_home_lan_true
   test_on_home_lan_false
   test_on_home_lan_no_false_positive_on_180
+  test_with_lock_runs_command_and_returns_status
+  test_with_lock_releases_lock
+  test_with_lock_serializes
 }
 run_all
 finish
