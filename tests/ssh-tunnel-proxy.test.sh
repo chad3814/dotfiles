@@ -43,10 +43,33 @@ test_ports_hardcoded() {
   assert_eq "1080 8080 7878 8006 8113 8989 9999" "${PORTS[*]}" "seven ports"
 }
 
+# --- Task 2 tests ---
+test_on_home_lan_true() {
+  ifconfig() { echo "	inet 172.18.18.145 netmask 0xffffff00 broadcast 172.18.18.255"; }
+  ip() { :; }
+  on_home_lan; assert_true "$?" "on_home_lan true when 172.18.18.x present"
+  unset -f ifconfig ip
+}
+test_on_home_lan_false() {
+  ifconfig() { echo "	inet 10.0.0.5 netmask 0xffffff00 broadcast 10.0.0.255"; }
+  ip() { :; }
+  on_home_lan; assert_false "$?" "on_home_lan false when not on 172.18.18.x"
+  unset -f ifconfig ip
+}
+test_on_home_lan_no_false_positive_on_180() {
+  ifconfig() { echo "	inet 172.18.180.5 netmask 0xffffff00"; }
+  ip() { :; }
+  on_home_lan; assert_false "$?" "172.18.180.x is not 172.18.18.x"
+  unset -f ifconfig ip
+}
+
 run_all() {
   test_sourcing_does_not_run_main
   test_unknown_subcommand_returns_2
   test_ports_hardcoded
+  test_on_home_lan_true
+  test_on_home_lan_false
+  test_on_home_lan_no_false_positive_on_180
 }
 run_all
 finish
