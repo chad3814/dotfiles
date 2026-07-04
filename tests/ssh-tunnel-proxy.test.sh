@@ -121,6 +121,7 @@ test_ensure_primary_skips_dial_when_present() {
 
 # --- Task 5 tests ---
 test_resolve_prefers_live_zeus() {
+
   primary_alive() { [[ "$1" == zeus ]]; }         # zeus up
   on_home_lan() { return 1; }                    # would say home
   ensure_primary() { return 0; }
@@ -154,6 +155,19 @@ test_resolve_offlan_picks_home() {
   unset -f primary_alive on_home_lan ensure_primary
 }
 
+# --- Task 6 tests ---
+test_connect_builds_ssh_w_command() {
+  resolve_host() { echo zeus; }
+  _exec() { echo "$*"; }                # capture instead of exec
+  local out; out="$(cmd_connect 8080)"
+  assert_eq "ssh -W 127.0.0.1:8080 -o ClearAllForwardings=yes zeus" "$out" \
+    "connect execs ssh -W to resolved host"
+  unset -f resolve_host _exec
+}
+test_connect_requires_port() {
+  cmd_connect >/dev/null 2>&1; assert_eq 2 "$?" "connect without port -> 2"
+}
+
 run_all() {
   test_sourcing_does_not_run_main
   test_unknown_subcommand_returns_2
@@ -171,6 +185,8 @@ run_all() {
   test_resolve_prefers_live_home_over_lan
   test_resolve_lan_picks_zeus_and_dials
   test_resolve_offlan_picks_home
+  test_connect_builds_ssh_w_command
+  test_connect_requires_port
 }
 run_all
 finish

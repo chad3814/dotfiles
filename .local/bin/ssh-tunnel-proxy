@@ -82,7 +82,11 @@ resolve_host() {
 
 # Placeholder bodies filled in later tasks; declared so `main` dispatch resolves.
 cmd_listen()  { usage; return 2; }
-cmd_connect() { usage; return 2; }
+cmd_connect() {
+  local port="${1:-}"
+  [[ -n "$port" ]] || { usage; return 2; }
+  _exec ssh -W "127.0.0.1:$port" -o ClearAllForwardings=yes "$(resolve_host)"
+}
 cmd_start()   { usage; return 2; }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
