@@ -49,8 +49,9 @@ main() {
 }
 
 on_home_lan() {
-  { ifconfig 2>/dev/null; ip -o addr show 2>/dev/null; } \
-    | grep -qE '172\.18\.18\.[0-9]'
+  local addrs
+  addrs="$(ifconfig 2>/dev/null; ip -o addr show 2>/dev/null)"
+  printf '%s\n' "$addrs" | grep -qE '172\.18\.18\.[0-9]'
 }
 
 primary_alive() {

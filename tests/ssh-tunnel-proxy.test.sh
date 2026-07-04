@@ -62,6 +62,13 @@ test_on_home_lan_no_false_positive_on_180() {
   on_home_lan; assert_false "$?" "172.18.180.x is not 172.18.18.x"
   unset -f ifconfig ip
 }
+test_on_home_lan_true_under_pipefail_when_ip_missing() {
+  ifconfig() { echo "	inet 172.18.18.5 netmask 0xffffff00"; }
+  ip() { return 127; }
+  ( set -o pipefail; on_home_lan )
+  assert_true "$?" "on_home_lan true under pipefail when ip is missing"
+  unset -f ifconfig ip
+}
 
 # --- Task 3 tests ---
 test_with_lock_runs_command_and_returns_status() {
@@ -199,6 +206,7 @@ run_all() {
   test_on_home_lan_true
   test_on_home_lan_false
   test_on_home_lan_no_false_positive_on_180
+  test_on_home_lan_true_under_pipefail_when_ip_missing
   test_with_lock_runs_command_and_returns_status
   test_with_lock_releases_lock
   test_with_lock_serializes
