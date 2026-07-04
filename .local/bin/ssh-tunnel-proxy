@@ -80,14 +80,41 @@ resolve_host() {
   printf '%s\n' "$h"
 }
 
-# Placeholder bodies filled in later tasks; declared so `main` dispatch resolves.
-cmd_listen()  { usage; return 2; }
+require_cmds() {
+  local missing=0 c
+  for c in ssh socat; do
+    if ! command -v "$c" >/dev/null 2>&1; then
+      echo "ssh-tunnel-proxy: required command not found: $c" >&2
+      missing=1
+    fi
+  done
+  return "$missing"
+}
+
+cmd_listen() {
+  local port="${1:-}"
+  [[ -n "$port" ]] || { usage; return 2; }
+  _exec socat "TCP-LISTEN:$port,bind=127.0.0.1,reuseaddr,fork" \
+    "EXEC:$SELF connect $port"
+}
+
 cmd_connect() {
   local port="${1:-}"
   [[ -n "$port" ]] || { usage; return 2; }
   _exec ssh -W "127.0.0.1:$port" -o ClearAllForwardings=yes "$(resolve_host)"
 }
-cmd_start()   { usage; return 2; }
+
+cmd_start() {
+  require_cmds || return 1
+  local pids=() port
+  # shellcheck disable=SC2064
+  trap 'kill "${pids[@]}" 2>/dev/null' EXIT INT TERM
+  for port in "${PORTS[@]}"; do
+    "$SELF" listen "$port" &
+    pids+=("$!")
+  done
+  wait
+}
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
   set -euo pipefail

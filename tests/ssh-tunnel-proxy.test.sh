@@ -168,6 +168,30 @@ test_connect_requires_port() {
   cmd_connect >/dev/null 2>&1; assert_eq 2 "$?" "connect without port -> 2"
 }
 
+# --- Task 7 tests ---
+test_listen_builds_socat_command() {
+  SELF=/fake/ssh-tunnel-proxy
+  _exec() { echo "$*"; }
+  local out; out="$(cmd_listen 8080)"
+  assert_eq \
+    "socat TCP-LISTEN:8080,bind=127.0.0.1,reuseaddr,fork EXEC:/fake/ssh-tunnel-proxy connect 8080" \
+    "$out" "listen execs socat with EXEC back-reference"
+  unset -f _exec
+}
+test_listen_requires_port() {
+  cmd_listen >/dev/null 2>&1; assert_eq 2 "$?" "listen without port -> 2"
+}
+test_require_cmds_fails_when_socat_missing() {
+  command() { if [[ "$*" == "-v socat" ]]; then return 1; fi; builtin command "$@"; }
+  require_cmds >/dev/null 2>&1; assert_false "$?" "require_cmds fails w/o socat"
+  unset -f command
+}
+test_start_bails_when_deps_missing() {
+  require_cmds() { return 1; }
+  cmd_start >/dev/null 2>&1; assert_false "$?" "start returns nonzero w/o deps"
+  unset -f require_cmds
+}
+
 run_all() {
   test_sourcing_does_not_run_main
   test_unknown_subcommand_returns_2
@@ -187,6 +211,10 @@ run_all() {
   test_resolve_offlan_picks_home
   test_connect_builds_ssh_w_command
   test_connect_requires_port
+  test_listen_builds_socat_command
+  test_listen_requires_port
+  test_require_cmds_fails_when_socat_missing
+  test_start_bails_when_deps_missing
 }
 run_all
 finish
