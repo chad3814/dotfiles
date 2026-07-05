@@ -87,6 +87,11 @@ if [[ "$(uname -s)" = "Darwin" && -d "/opt/homebrew/opt/curl" ]]; then
   export CPPFLAGS="-I/opt/homebrew/opt/curl/include"
 fi
 
+# Ensure socat is installed on macOS (required by ssh-tunnel-proxy)
+if [[ "$(uname -s)" = "Darwin" ]] && ! command -v socat >/dev/null 2>&1; then
+  brew install socat
+fi
+
 source ~/.env
 
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
