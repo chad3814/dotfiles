@@ -77,7 +77,7 @@ resolve_host() {
     fi
   done
   if on_home_lan; then h=zeus; else h=home; fi
-  ensure_primary "$h"
+  ensure_primary "$h" || true
   printf '%s\n' "$h"
 }
 
@@ -108,12 +108,11 @@ cmd_connect() {
 cmd_start() {
   require_cmds || return 1
   local pids=() port
-  # shellcheck disable=SC2064
-  trap 'kill "${pids[@]}" 2>/dev/null' EXIT INT TERM
   for port in "${PORTS[@]}"; do
     "$SELF" listen "$port" &
     pids+=("$!")
   done
+  trap 'kill "${pids[@]}" 2>/dev/null' EXIT INT TERM
   wait
 }
 

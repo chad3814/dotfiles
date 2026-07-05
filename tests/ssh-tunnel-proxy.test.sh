@@ -164,12 +164,14 @@ test_resolve_offlan_picks_home() {
 
 # --- Task 6 tests ---
 test_connect_builds_ssh_w_command() {
+  local saved_resolve_host; saved_resolve_host="$(declare -f resolve_host)"
   resolve_host() { echo zeus; }
   _exec() { echo "$*"; }                # capture instead of exec
   local out; out="$(cmd_connect 8080)"
   assert_eq "ssh -W 127.0.0.1:8080 -o ClearAllForwardings=yes zeus" "$out" \
     "connect execs ssh -W to resolved host"
   unset -f resolve_host _exec
+  eval "$saved_resolve_host"
 }
 test_connect_requires_port() {
   cmd_connect >/dev/null 2>&1; assert_eq 2 "$?" "connect without port -> 2"
@@ -177,6 +179,7 @@ test_connect_requires_port() {
 
 # --- Task 7 tests ---
 test_listen_builds_socat_command() {
+  local saved_self="$SELF"
   SELF=/fake/ssh-tunnel-proxy
   _exec() { echo "$*"; }
   local out; out="$(cmd_listen 8080)"
@@ -184,6 +187,7 @@ test_listen_builds_socat_command() {
     "socat TCP-LISTEN:8080,bind=127.0.0.1,reuseaddr,fork EXEC:/fake/ssh-tunnel-proxy connect 8080" \
     "$out" "listen execs socat with EXEC back-reference"
   unset -f _exec
+  SELF="$saved_self"
 }
 test_listen_requires_port() {
   cmd_listen >/dev/null 2>&1; assert_eq 2 "$?" "listen without port -> 2"
@@ -197,6 +201,17 @@ test_start_bails_when_deps_missing() {
   require_cmds() { return 1; }
   cmd_start >/dev/null 2>&1; assert_false "$?" "start returns nonzero w/o deps"
   unset -f require_cmds
+}
+
+test_resolve_survives_failed_ensure_primary() {
+  primary_alive() { return 1; }      # no live primary
+  on_home_lan() { return 0; }        # on LAN -> zeus
+  ensure_primary() { return 1; }     # dial fails
+  local out rc
+  out="$(set -euo pipefail; resolve_host)"; rc=$?
+  assert_eq "zeus" "$out" "resolve_host prints zeus even when ensure_primary fails"
+  assert_eq 0 "$rc" "resolve_host exits 0 despite failed ensure_primary"
+  unset -f primary_alive on_home_lan ensure_primary
 }
 
 run_all() {
@@ -223,6 +238,7 @@ run_all() {
   test_listen_requires_port
   test_require_cmds_fails_when_socat_missing
   test_start_bails_when_deps_missing
+  test_resolve_survives_failed_ensure_primary
 }
 run_all
 finish
