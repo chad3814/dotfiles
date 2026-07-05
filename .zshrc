@@ -14,11 +14,8 @@ if [ ! -d "$ZINIT_HOME" ]; then
 	git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
-if [ -e "${HOME}/.1password/agent.sock" ]; then
-    export SSH_AUTH_SOCK="${HOME}/.1password/agent.sock"
-elif [ -e "${HOME}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock" ]; then
-    export SSH_AUTH_SOCK="${HOME}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-fi
+# SSH_AUTH_SOCK (1Password agent) is set in ~/.zprofile so login shells and the
+# ssh-tunnel-proxy launchd agent get it too.
 
 # Source zinit
 source "${ZINIT_HOME}/zinit.zsh"
