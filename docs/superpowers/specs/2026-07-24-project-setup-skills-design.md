@@ -37,6 +37,15 @@ version-controlled set of skills.
     just the git structure.
 11. Prep logic is **hybrid**: run a repo hook script if present, else
     auto-detect the toolchain (Node/TS **and** Rust) and install + build.
+12. **Script-backed skills** (refinement, decided post-approval). Each skill is
+    a thin `SKILL.md` (when/why + how to invoke + failure interpretation)
+    wrapping a tested shell script that holds the git logic. The exact script
+    the skill runs is what the tests exercise — DRY and deterministic.
+13. **`project-setup` composes `add-worktree`** (refinement). Rather than
+    duplicating a shared prep procedure, `project-setup` establishes the git
+    structure and then invokes `add-worktree` to create *and* prepare the
+    default worktree, then sets upstream. Worktree logic lives in one place
+    (`add-worktree.sh`).
 
 ## Environment facts (verified 2026-07-24)
 
@@ -117,11 +126,11 @@ origin is reachable (`git ls-remote --symref "$origin" HEAD` succeeds).
    (so `add-worktree` can detect it later).
 8. Write `$project/.git` containing exactly `gitdir: ./git`.
 9. `mkdir -p "$project/worktrees"`.
-10. `git -C "$project" worktree add "worktrees/<default>" "<default>"`.
-11. `git -C "$project/worktrees/<default>" branch --set-upstream-to=origin/<default> <default>`.
-12. **Prepare the default worktree** using the shared procedure below (env-copy
-    is a no-op — it is the first worktree).
-13. Report: project path, default branch/worktree, prep outcome. Writes **no**
+10. Create and prepare the default worktree by invoking `add-worktree` with
+    `<default>` from cwd `$project`: it creates `worktrees/<default>`, skips
+    env-copy (first worktree), and runs install/build.
+11. Set upstream: `git -C "$project/worktrees/<default>" branch --set-upstream-to=origin/<default> <default>`.
+12. Report: project path, default branch/worktree, prep outcome. Writes **no**
     `CLAUDE.md` and **no** `repo-config.json`.
 
 **Failure modes:** no origin → ask; `ls-remote` fails → surface (auth/net/URL);
@@ -178,8 +187,8 @@ wins when cwd is inside that worktree (project skills override user skills).
 
 ## Shared procedure: "prepare a worktree"
 
-Referenced by `project-setup` (step 12) and `add-worktree` (step 6). Defined
-once to avoid drift.
+Implemented once inside `add-worktree.sh` and reused by `project-setup` through
+composition (it invokes `add-worktree`), so there is a single implementation.
 
 1. **Copy env files.** Skip if this is the first worktree (no source). Pick a
    source worktree in this order: the worktree containing cwd (if invoked from
