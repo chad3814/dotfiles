@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # shellcheck shell=bash
 # Shared helpers for skill tests. Source, don't execute.
 set -euo pipefail
