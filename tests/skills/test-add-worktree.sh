@@ -28,6 +28,7 @@ assert_eq "$(git -C worktrees/pushed rev-parse --abbrev-ref HEAD)" "feature/push
 git -C "$proj/git" branch fix/local-1 main
 bash "$AW" fix/local-1 >/dev/null
 assert_dir "$proj/worktrees/local-1" "local-branch worktree"
+assert_eq "$(git -C worktrees/local-1 rev-parse --abbrev-ref HEAD)" "fix/local-1" "reused local branch checked out"
 
 # 4) Env-file filtering (run FROM a source worktree so it is chosen as source).
 bash "$AW" chore/src >/dev/null

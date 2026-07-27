@@ -72,7 +72,7 @@ while IFS= read -r wt; do
   esac
 done < <(git worktree list --porcelain | awk '/^worktree /{print $2}')
 if [ -z "$source_wt" ]; then
-  if [ -d "$root/worktrees/$default" ] && [ "$root/worktrees/$default" != "$path" ]; then
+  if [ -n "$default" ] && [ -d "$root/worktrees/$default" ] && [ "$root/worktrees/$default" != "$path" ]; then
     source_wt="$root/worktrees/$default"
   else
     source_wt="$first_wt"
