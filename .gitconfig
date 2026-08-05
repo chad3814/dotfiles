@@ -9,7 +9,7 @@
 [commit]
 	gpgsign = true
 [gpg "ssh"]
-	allowedSignersFile = /Users/cwalker/.ssh/allowed_signes
+	allowedSignersFile = /Users/cwalker/.ssh/allowed_signers
 [core]
 	editor = code --wait
 	excludesfile = /Users/cwalker/.gitignore_global
@@ -21,3 +21,5 @@
 	trustExitCode = true
 [pull]
 	rebase = true
+[rebase]
+	gpgSign = true
