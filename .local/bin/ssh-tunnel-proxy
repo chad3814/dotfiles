@@ -4,7 +4,7 @@
 # Sourceable: defining functions must not trigger main (see guard at bottom).
 
 SELF="$(readlink -f "${BASH_SOURCE[0]}")"
-PORTS=(1080 8080 7878 8006 8113 8989 9999)
+PORTS=(1080 7878 8006 8080 8113 8888 8989 9999)
 HOSTS=(zeus home)
 
 STP_LOCKDIR="${STP_LOCKDIR:-${TMPDIR:-/tmp}/ssh-tunnel-proxy.lock.d}"
