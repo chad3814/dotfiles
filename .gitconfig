@@ -9,10 +9,10 @@
 [commit]
 	gpgsign = true
 [gpg "ssh"]
-	allowedSignersFile = /Users/cwalker/.ssh/allowed_signers
+	allowedSignersFile = ~/.ssh/allowed_signers
 [core]
-	editor = code --wait
-	excludesfile = /Users/cwalker/.gitignore_global
+	editor = vi
+	excludesfile = ~/.gitignore_global
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
