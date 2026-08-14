@@ -22,7 +22,7 @@ The worktree directory is `basename <branch>` (e.g. `feature/add-login` → `wor
 ## What it does
 1. Verifies the bare-repo + worktrees layout (else exits non-zero).
 2. Fetches origin, then reuses the branch if it exists locally or on origin, otherwise creates it off the detected default branch.
-3. Prepares the worktree: copies untracked `.env*` (excluding `.env.example/.sample/.template`) from a sibling worktree; then runs `scripts/worktree-setup.sh` if present and executable, else auto-detects Node/TS (lockfile → pnpm/yarn/bun/npm install + the `build` script) and Rust (`cargo build`).
+3. Prepares the worktree: copies untracked `.env*` (excluding `.env.example/.sample/.template`) from a sibling worktree; then runs `scripts/worktree-setup.sh` if present and executable, else auto-detects Node/TS (lockfile → a frozen-lockfile install: `npm ci`, `pnpm install --frozen-lockfile`, `yarn install --immutable`/`--frozen-lockfile`, `bun install --frozen-lockfile` — never a plain `install`, which would rewrite the lockfile into the branch) plus the `build` script, and Rust (`cargo build`).
 
 ## Interpreting failures
 - "not a bare-repo + worktrees project" → you are not inside such a project; do not use this skill.

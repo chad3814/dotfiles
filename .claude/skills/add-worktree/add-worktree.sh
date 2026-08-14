@@ -102,13 +102,26 @@ if [ -x "$hook" ]; then
 else
   prep=""
   if [ -f "$path/package.json" ]; then
-    if   [ -f "$path/pnpm-lock.yaml" ]; then pm="pnpm"; inst="install"
-    elif [ -f "$path/yarn.lock" ];      then pm="yarn"; inst=""
-    elif [ -f "$path/bun.lockb" ];      then pm="bun";  inst="install"
+    # Install from the lockfile without rewriting it. A new worktree is a
+    # checkout, not a place to resolve new versions: a plain `install` lets the
+    # locally-installed package manager rewrite the lockfile (npm rewrites the
+    # `libc` fields, for one), and that lands in the branch as diff noise that
+    # has nothing to do with the work — or worse, gets committed and changes
+    # what a Linux or container build resolves.
+    if   [ -f "$path/pnpm-lock.yaml" ];    then pm="pnpm"; inst="install --frozen-lockfile"
+    elif [ -f "$path/yarn.lock" ];         then
+      pm="yarn"
+      # Berry rejects --frozen-lockfile; classic doesn't know --immutable.
+      case "$(yarn --version 2>/dev/null)" in
+        1.*|"") inst="install --frozen-lockfile" ;;
+        *)      inst="install --immutable" ;;
+      esac
+    elif [ -f "$path/bun.lockb" ];         then pm="bun";  inst="install --frozen-lockfile"
+    elif [ -f "$path/package-lock.json" ]; then pm="npm";  inst="ci"
     else pm="npm"; inst="install"; fi
     if command -v "$pm" >/dev/null 2>&1; then
       # shellcheck disable=SC2086
-      if ( cd "$path" && $pm $inst ); then prep="$prep; $pm install"; else prep="$prep; $pm install FAILED"; fi
+      if ( cd "$path" && $pm $inst ); then prep="$prep; $pm $inst"; else prep="$prep; $pm $inst FAILED"; fi
       if command -v node >/dev/null 2>&1 && \
          ( cd "$path" && node -e 'const s=require("./package.json").scripts||{};process.exit(s.build?0:1)' ) 2>/dev/null; then
         if ( cd "$path" && "$pm" run build ); then prep="$prep; $pm run build"; else prep="$prep; $pm run build FAILED"; fi
