@@ -15,5 +15,8 @@
 .config/gh/hosts.yml
 .1password/agent.sock
 
+# Rendered from .qbt.toml.tpl via `op inject`; contains the WebUI password.
+.config/qbt/.qbt.toml
+
 # Local Netlify folder
 .netlify

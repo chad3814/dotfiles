@@ -89,6 +89,31 @@ if [[ "$(uname -s)" = "Darwin" ]] && ! command -v socat >/dev/null 2>&1; then
   brew install socat
 fi
 
+# qbt insists on reading credentials from a config file, so render one from
+# 1Password into a named FIFO — the secrets stay off disk entirely. The .toml
+# suffix is load-bearing: qbt uses Viper, which infers the format from the file
+# extension and rejects an extensionless /dev/fd/N from `<(...)`. Without op
+# installed the plain binary is used, so non-macOS boxes still work.
+if command -v op >/dev/null 2>&1; then
+  qbt() {
+    local dir rc writer
+    dir="$(mktemp -d)" || return 1
+    if ! mkfifo -m 600 "$dir/.qbt.toml"; then
+      rm -rf "$dir"
+      return 1
+    fi
+    op inject -i "$HOME/.config/qbt/.qbt.toml.tpl" > "$dir/.qbt.toml" &
+    writer=$!
+    command qbt --config "$dir/.qbt.toml" "$@"
+    rc=$?
+    # If qbt exited before opening the FIFO, the writer is still blocked on it.
+    kill "$writer" 2>/dev/null
+    wait "$writer" 2>/dev/null
+    rm -rf "$dir"
+    return $rc
+  }
+fi
+
 source ~/.env
 
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.

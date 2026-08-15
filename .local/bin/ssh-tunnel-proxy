@@ -4,7 +4,10 @@
 # Sourceable: defining functions must not trigger main (see guard at bottom).
 
 SELF="$(readlink -f "${BASH_SOURCE[0]}")"
-PORTS=(1080 7878 8006 8080 8113 8888 8989 9999)
+# 1080 is the SOCKS port; 8113 is the qBittorrent WebUI API, which has to be
+# tunneled because the public https host sits behind Authelia and qbt cannot
+# authenticate through it. Other services are reached directly.
+PORTS=(1080 8113)
 HOSTS=(zeus home)
 
 STP_LOCKDIR="${STP_LOCKDIR:-${TMPDIR:-/tmp}/ssh-tunnel-proxy.lock.d}"

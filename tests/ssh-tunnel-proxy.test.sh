@@ -40,7 +40,7 @@ test_unknown_subcommand_returns_2() {
   main bogus >/dev/null 2>&1; assert_eq 2 "$?" "unknown subcommand -> 2"
 }
 test_ports_hardcoded() {
-  assert_eq "1080 8080 7878 8006 8113 8989 9999" "${PORTS[*]}" "seven ports"
+  assert_eq "1080 8113" "${PORTS[*]}" "socks + qbittorrent api ports"
 }
 
 # --- Task 2 tests ---
