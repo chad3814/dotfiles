@@ -1,7 +1,7 @@
 [user]
-	email = cwalker@mozilla.com
+	email = chad@cwalker.dev
 	name = Chad Walker
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHwj5cmB5X5VZMyxAG3rOhwC1IWxeKGjx4d+e8UPsifz
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDskvLnsbpDORuwCypg1ryHuyBGmkCXTiLnBRtNh5lO9
 [init]
 	defaultBranch = main
 [gpg]

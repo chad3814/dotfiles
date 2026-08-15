@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$(readlink -f "$0")")"
-stow --no-folding .
+# -R (restow) unstows before stowing. Plain `stow` only adds links, so a file
+# deleted or renamed in the repo leaves its symlink behind in $HOME pointing at
+# a path that no longer exists — that stale-link class has silently broken the
+# 1Password agent socket, an old chadshost key, and others. Restowing removes
+# links that point into this repo before recreating the current set.
+stow -R --no-folding .
 
 # Link 1Password's SSH agent socket to the short path that .ssh/config's
 # IdentityAgent and .zprofile both expect. Created here rather than tracked in

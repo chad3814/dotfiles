@@ -5,3 +5,10 @@ README.md
 docs
 tests
 .superpowers
+
+# Claude Code runtime state. These live in the working tree and are gitignored,
+# but stow does not read .gitignore, so without this it symlinks them into
+# ~/.claude and Claude Code then writes its session state back into this repo.
+# Anchored full-path regex: entries containing "/" match the path relative to
+# the package root.
+^/\.claude/(todos|backups|shell-snapshots|projects|telemetry|logs|statsig|ide)$
