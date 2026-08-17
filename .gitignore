@@ -7,6 +7,13 @@
 .claude/shell-snapshots
 .claude/todos
 .claude/statsig
+
+# Claude Code credentials. Normally the token lives in the macOS Keychain
+# (item "Claude Code-credentials"), but it falls back to a file on Linux or
+# when useKeychain is false. Never let these reach this public repo.
+.claude/.credentials.json
+.claude.json
+.claude/settings.local.json
 .local/share/zinit
 .local/share/fzf
 .oh-my-zsh
