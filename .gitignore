@@ -1,1 +1,39 @@
+.DS_Store
+.env
+.claude/backups
+.claude/ide
+.claude/logs
+.claude/projects
+.claude/shell-snapshots
+.claude/todos
+.claude/statsig
+
+# Claude Code state, not configuration. policy-limits.json is pushed from the
+# account/org policy and rewritten on refresh, so its keys churn on Anthropic's
+# schedule. superclaude_env_vars.json holds only set_by/timestamp/value_hash.
+# Live copies are real files in ~/.claude, deliberately not stowed from here.
+.claude/policy-limits.json
+.claude/superclaude_env_vars.json
+
+# Claude Code credentials. Normally the token lives in the macOS Keychain
+# (item "Claude Code-credentials"), but it falls back to a file on Linux or
+# when useKeychain is false. Never let these reach this public repo.
+.claude/.credentials.json
+.claude.json
+.claude/settings.local.json
+.local/share/zinit
+.local/share/fzf
+.oh-my-zsh
+.fzf
+
+.config/gh/hosts.yml
+.1password/agent.sock
+
+# Rendered from .qbt.toml.tpl via `op inject`; contains the WebUI password.
+.config/qbt/.qbt.toml
+
+# Local Netlify folder
+.netlify
+
+# Personal resume. Kept local only; this repo is public.
 resume.md
