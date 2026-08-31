@@ -1,4 +1,6 @@
-eval "$(/opt/homebrew/bin/brew shellenv)"
+if [ -e "/opt/homebrew/bin/brew" ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 # 1Password SSH agent socket. Set here (login shell) rather than .zshrc so it is
 # available to non-interactive login shells too — notably the ssh-tunnel-proxy
