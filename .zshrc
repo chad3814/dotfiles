@@ -14,6 +14,14 @@ if [ ! -d "$ZINIT_HOME" ]; then
 	git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
+export NVM_DIR="$HOME/.nvm"
+if [ ! -d "${NVM_DIR}" ]; then
+	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.7/install.sh | bash
+	source "${NVM_DIR}/nvm.sh"
+	nvm install --lts
+	nvm use system
+fi
+
 # SSH_AUTH_SOCK (1Password agent) is set in ~/.zprofile so login shells and the
 # ssh-tunnel-proxy launchd agent get it too.
 
