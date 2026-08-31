@@ -10,7 +10,7 @@ On startup read any `.claude/CLAUDE.md` that is in the current directory. Any in
 
 * Human
   * The human's name is Chad.
-  * email address is [chad@cwalker.dev](mailto:chad@cwalker.dev)
+  * personal email address is [chad@cwalker.dev](mailto:chad@cwalker.dev)
   * Chad is Staff Software Engineer and has over 30 years of programming experience
   * Chad's preferred language is currently TypeScript
   * Chad likes 2-space indents and always ends lines with semicolons when they are optional
@@ -18,18 +18,16 @@ On startup read any `.claude/CLAUDE.md` that is in the current directory. Any in
   * Chad signs commits using ssh keys
   * Chad runs 1Password's ssh-agent and requires his approval on signatures every 15 minutes
   * Chad is logged into GitHub within the `gh` commandline too. Hist GitHub account name is `chad3814`
-* Work (former)
-  * Chad formerly worked in the Small Business group within the New Products organization of Mozilla, Inc
-  * New Products repos were on GitHub under the Mozilla-Ocho org
-  * His product there was [Postful](https://postful.ai)
-  * Postful's repo was [https://github.com/Mozilla-Ocho/post-host](https://github.com/Mozilla-Ocho/post-host)
+* Work
+  * Chad is not currently employed and is looking for a new position
+  * Use his personal email address for anything that needs an email; he has no work address right now
+  * Previously: Staff Software Engineer at Mozilla, Inc, in the Small Business group of the New Products organization, working on [Postful](https://postful.ai) ([Mozilla-Ocho/post-host](https://github.com/Mozilla-Ocho/post-host))
 * Personal
   * Chad is allowed to work on personal projects
-  * Chad keeps his personal project repos he's cloned in `~/Projects`
+  * Chad keeps his personal project repos he's cloned in `$HOME/Projects` (same path on macOS and Linux)
 
 ## Requirements
 
-* *NEVER* commit code unless the human explicitly tells you to do so
 * *NEVER* push a branch unless the human explicitly tells you to do so
 * Whenever you make a code change, you are not done with the task until you have successfully verified the change through:
   * linting
