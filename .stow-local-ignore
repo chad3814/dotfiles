@@ -6,6 +6,11 @@ docs
 tests
 .superpowers
 
+# Finder metadata. Gitignored, but stow does not read .gitignore, and $HOME has
+# its own .DS_Store, so without this stow aborts on a conflict and deploy.sh
+# (set -euo pipefail) exits before the agent-socket and launchd steps run.
+.DS_Store
+
 # Claude Code runtime state. These live in the working tree and are gitignored,
 # but stow does not read .gitignore, so without this it symlinks them into
 # ~/.claude and Claude Code then writes its session state back into this repo.
