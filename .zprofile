@@ -10,3 +10,8 @@ if [ -e "${HOME}/.1password/agent.sock" ]; then
 elif [ -e "${HOME}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock" ]; then
     export SSH_AUTH_SOCK="${HOME}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 fi
+
+if [ -e "${HOME}/.env" ]; then
+    source ~/.env
+fi
+
