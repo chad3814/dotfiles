@@ -1,6 +1,6 @@
 ---
 name: address-issue
-description: Use when starting work on a tracker issue in a bare-repo + worktrees/ project. Triggers include "work on issue 21", "address issue #21", or "/address-issue 21". Default tracker is GitHub via gh; a repo may override with its own committed .claude/skills/address-issue.
+description: Use when starting work on a tracker issue in a bare-repo + worktrees/ project. Triggers include "work on issue 21", "address issue #21", or "/address-issue 21". Default tracker is GitHub via gh; a repo may override with its own committed .dsh/skills/address-issue.
 ---
 
 # address-issue

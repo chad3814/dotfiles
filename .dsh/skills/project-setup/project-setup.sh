@@ -39,4 +39,4 @@ git -C "$project/worktrees/$default" branch --set-upstream-to="origin/$default" 
 
 echo "project-setup: $project"
 echo "  default: $default → worktrees/$default (tracking origin/$default)"
-echo "  wrote git/, .git (gitdir: ./git), worktrees/; no CLAUDE.md or repo-config.json"
+echo "  wrote git/, .git (gitdir: ./git), worktrees/; no instruction or config files"

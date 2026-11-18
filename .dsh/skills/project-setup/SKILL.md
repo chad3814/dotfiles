@@ -20,7 +20,7 @@ From the parent directory the project should live in (e.g. `~/Projects`, `~/Mozi
 Origin may be SSH or HTTPS, with or without a trailing `.git`. If none is given, ask the user.
 
 ## What it does
-Creates `<slug>/` containing `git/` (bare clone), a `.git` pointer (`gitdir: ./git`), and `worktrees/`; sets `origin/HEAD`; creates and prepares `worktrees/<default-branch>` (via add-worktree.sh) with upstream tracking. Writes no CLAUDE.md and no repo-config.json — the layout is described in global `~/.claude/CLAUDE.md`, and project-specific instructions belong in the repo's own committed CLAUDE.md.
+Creates `<slug>/` containing `git/` (bare clone), a `.git` pointer (`gitdir: ./git`), and `worktrees/`; sets `origin/HEAD`; creates and prepares `worktrees/<default-branch>` (via add-worktree.sh) with upstream tracking. Writes no instruction or config files — the layout is described in the global `~/.dsh/AGENTS.md`, and project-specific instructions belong in the repo's own committed `AGENTS.md`.
 
 ## Interpreting failures
 - Unreachable origin or a non-empty target directory → reported; nothing is deleted, so inspect and retry.

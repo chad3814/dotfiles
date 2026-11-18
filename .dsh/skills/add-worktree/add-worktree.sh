@@ -33,7 +33,11 @@ if git worktree list --porcelain | grep -qxF "branch refs/heads/$branch"; then
   exit 1
 fi
 
-git fetch origin --prune
+# Offline is common (traveling, flaky VPN); the existing local refs are still
+# enough to create the branch, so warn instead of aborting.
+if ! git fetch origin --prune; then
+  echo "warning: git fetch origin failed (offline?); using existing local refs" >&2
+fi
 
 default="$(basename "$(git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null || true)")"
 if [ -z "$default" ] || [ "$default" = "." ]; then
@@ -107,7 +111,8 @@ else
     # locally-installed package manager rewrite the lockfile (npm rewrites the
     # `libc` fields, for one), and that lands in the branch as diff noise that
     # has nothing to do with the work — or worse, gets committed and changes
-    # what a Linux or container build resolves.
+    # what a Linux or container build resolves. With no lockfile at all, still
+    # pass --no-package-lock so npm does not generate one into the branch.
     if   [ -f "$path/pnpm-lock.yaml" ];    then pm="pnpm"; inst="install --frozen-lockfile"
     elif [ -f "$path/yarn.lock" ];         then
       pm="yarn"
@@ -118,7 +123,7 @@ else
       esac
     elif [ -f "$path/bun.lockb" ];         then pm="bun";  inst="install --frozen-lockfile"
     elif [ -f "$path/package-lock.json" ]; then pm="npm";  inst="ci"
-    else pm="npm"; inst="install"; fi
+    else pm="npm"; inst="install --no-package-lock"; fi
     if command -v "$pm" >/dev/null 2>&1; then
       # shellcheck disable=SC2086
       if ( cd "$path" && $pm $inst ); then prep="$prep; $pm $inst"; else prep="$prep; $pm $inst FAILED"; fi

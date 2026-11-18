@@ -18,6 +18,8 @@
   * Previously: Staff Software Engineer at Mozilla, Inc, in the Small Business group of the New Products organization, working on [Postful](https://postful.ai) ([Mozilla-Ocho/post-host](https://github.com/Mozilla-Ocho/post-host))
 * Personal
   * Chad keeps his personal project repos he's cloned in `$HOME/Projects` (same path on macOS and Linux)
+  * Chad's dotfiles are stowed into `$HOME` with GNU stow (`stow -R --no-folding`, run by `./deploy.sh`). The checkout is `$HOME/.dotfiles` on some machines and `$HOME/dotfiles` on others — use whichever exists.
+  * User-level agent config lives in that checkout: `~/.dsh/AGENTS.md` and `~/.dsh/skills/*` are symlinks into it, so write through them or edit the files there directly. After adding or renaming a file, run `./deploy.sh` from the checkout; `--no-folding` means new files are not linked under `$HOME` until the restow.
 
 # Requirements
 
